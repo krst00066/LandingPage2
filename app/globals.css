@@ -1,0 +1,427 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Dark theme colors matching reference site */
+  --background: oklch(0.15 0.01 270);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.18 0.01 270);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.18 0.01 270);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.55 0.22 25);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.2 0.01 270);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.25 0.01 270);
+  --muted-foreground: oklch(0.65 0.02 270);
+  --accent: oklch(0.65 0.25 50);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.3 0.01 270);
+  --input: oklch(0.25 0.01 270);
+  --ring: oklch(0.55 0.22 25);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.12 0.01 270);
+  --foreground: oklch(0.99 0 0);
+  --card: oklch(0.15 0.01 270);
+  --card-foreground: oklch(0.99 0 0);
+  --popover: oklch(0.15 0.01 270);
+  --popover-foreground: oklch(0.99 0 0);
+  --primary: oklch(0.58 0.24 265);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.2 0.01 270);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.2 0.01 270);
+  --muted-foreground: oklch(0.65 0.02 270);
+  --accent: oklch(0.58 0.24 145);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.25 0.01 270);
+  --input: oklch(0.25 0.01 270);
+  --ring: oklch(0.58 0.24 265);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes bounce-subtle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes pulse-scale {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Adding RGB rainbow animation for DAFTAR button */
+  @keyframes rgb-glow {
+    0% {
+      background: linear-gradient(135deg, #ff0000, #ff7300);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.4);
+    }
+    14% {
+      background: linear-gradient(135deg, #ff7300, #fffb00);
+      box-shadow: 0 0 20px rgba(255, 115, 0, 0.6), 0 0 40px rgba(255, 115, 0, 0.4);
+    }
+    28% {
+      background: linear-gradient(135deg, #fffb00, #48ff00);
+      box-shadow: 0 0 20px rgba(255, 251, 0, 0.6), 0 0 40px rgba(255, 251, 0, 0.4);
+    }
+    42% {
+      background: linear-gradient(135deg, #48ff00, #00ffd5);
+      box-shadow: 0 0 20px rgba(72, 255, 0, 0.6), 0 0 40px rgba(72, 255, 0, 0.4);
+    }
+    56% {
+      background: linear-gradient(135deg, #00ffd5, #002bff);
+      box-shadow: 0 0 20px rgba(0, 255, 213, 0.6), 0 0 40px rgba(0, 255, 213, 0.4);
+    }
+    70% {
+      background: linear-gradient(135deg, #002bff, #7a00ff);
+      box-shadow: 0 0 20px rgba(0, 43, 255, 0.6), 0 0 40px rgba(0, 43, 255, 0.4);
+    }
+    84% {
+      background: linear-gradient(135deg, #7a00ff, #ff00c8);
+      box-shadow: 0 0 20px rgba(122, 0, 255, 0.6), 0 0 40px rgba(122, 0, 255, 0.4);
+    }
+    100% {
+      background: linear-gradient(135deg, #ff00c8, #ff0000);
+      box-shadow: 0 0 20px rgba(255, 0, 200, 0.6), 0 0 40px rgba(255, 0, 200, 0.4);
+    }
+  }
+
+  /* Updated RGB brand bar animation to flow horizontally with continuous gradient movement */
+  @keyframes rgb-bar {
+    0% {
+      background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+      );
+      background-size: 200% 100%;
+      background-position: 0% 0%;
+    }
+    100% {
+      background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+      );
+      background-size: 200% 100%;
+      background-position: 200% 0%;
+    }
+  }
+
+  /* Adding neon pulse animation for game cards */
+  @keyframes neon-pulse {
+    0%,
+    100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Adding star eruption animation for JOIN button */
+  @keyframes star-erupt {
+    0% {
+      transform: translateY(0) scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) scale(1) rotate(180deg);
+      opacity: 0;
+    }
+  }
+
+  /* Adding coin eruption animation for DAFTAR button */
+  @keyframes coin-erupt {
+    0% {
+      transform: translateY(0) translateX(0) scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-120px) translateX(var(--x-offset, 0)) scale(1.2) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Reduced scale values in animations to prevent page resize */
+  @keyframes money-glow {
+    0%,
+    100% {
+      background: linear-gradient(135deg, #ffd700, #ffed4e, #ffa500);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.7), 0 0 90px rgba(255, 165, 0, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+    }
+    33% {
+      background: linear-gradient(135deg, #ffed4e, #ffd700, #ff8c00);
+      box-shadow: 0 0 30px rgba(255, 237, 78, 0.9), 0 0 60px rgba(255, 215, 0, 0.7), 0 0 90px rgba(255, 140, 0, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+    }
+    66% {
+      background: linear-gradient(135deg, #ffa500, #ffed4e, #ffd700);
+      box-shadow: 0 0 30px rgba(255, 165, 0, 0.9), 0 0 60px rgba(255, 237, 78, 0.7), 0 0 90px rgba(255, 215, 0, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  @keyframes jackpot-pulse-big {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+  /* </CHANGE> */
+
+  @keyframes text-gold-shimmer {
+    0% {
+      background-position: -300% center;
+    }
+    100% {
+      background-position: 300% center;
+    }
+  }
+
+  @keyframes sparkle-rotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: rotate(180deg) scale(1.3);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes jackpot-glow {
+    0%,
+    100% {
+      background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    25% {
+      background: linear-gradient(135deg, #ff6b00, #ffa500, #ff6b00);
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.8), 0 0 40px rgba(255, 107, 0, 0.6), 0 0 60px rgba(255, 107, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+      background: linear-gradient(135deg, #ff0080, #ff69b4, #ff0080);
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.8), 0 0 40px rgba(255, 0, 128, 0.6), 0 0 60px rgba(255, 0, 128, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    75% {
+      background: linear-gradient(135deg, #9d00ff, #c77dff, #9d00ff);
+      box-shadow: 0 0 20px rgba(157, 0, 255, 0.8), 0 0 40px rgba(157, 0, 255, 0.6), 0 0 60px rgba(157, 0, 255, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  @keyframes jackpot-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+  }
+
+  @keyframes text-shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-scale {
+    animation: pulse-scale 2s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 5s linear infinite;
+  }
+
+  /* Adding RGB glow animation class */
+  .animate-rgb-glow {
+    animation: rgb-glow 3s linear infinite;
+  }
+
+  /* Updated animation class to run faster for flowing effect */
+  .animate-rgb-bar {
+    animation: rgb-bar 2s linear infinite;
+  }
+
+  .animate-neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-star-erupt {
+    animation: star-erupt 2s ease-out infinite;
+  }
+
+  /* Adding animation classes for enhanced DAFTAR button */
+  .animate-coin-erupt {
+    animation: coin-erupt 2.5s ease-out infinite;
+  }
+
+  .animate-money-glow {
+    animation: money-glow 2.5s ease-in-out infinite, jackpot-pulse-big 1.2s ease-in-out infinite;
+  }
+
+  .animate-text-gold-shimmer {
+    background: linear-gradient(90deg, #fff 0%, #ffd700 20%, #ffed4e 40%, #fff 50%, #ffed4e 60%, #ffd700 80%, #fff 100%);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-gold-shimmer 2s linear infinite;
+  }
+
+  .animate-sparkle-rotate {
+    animation: sparkle-rotate 3s ease-in-out infinite;
+  }
+
+  .animate-jackpot-glow {
+    animation: jackpot-glow 3s ease-in-out infinite, jackpot-pulse 1.5s ease-in-out infinite;
+  }
+
+  .animate-text-shimmer {
+    background: linear-gradient(90deg, #fff 0%, #ffe600 25%, #fff 50%, #ffe600 75%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 2s linear infinite;
+  }
+}
